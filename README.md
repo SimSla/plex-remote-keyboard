@@ -3,10 +3,25 @@ Uses the [Plex Home Theatre REST API](https://code.google.com/p/plex-api/wiki/Pl
 
 Tested on Mac OS X and Python 2.7. *Might* work on other systems.
 
-# Usage
+## Installation
+Change the IP address in `src/plex-remote-keyboard.py` to match that of your PHT host.
+
+Run the setup script to install the script and add it to your path.
+
+    $ python setup.py install
+    $ plex-remote-keyboard
+    ...
+
+You can also run the script without installing.
+
+    $ python src/plex-remote-keyboard.py
+    ...
+
+## Usage
 
 ```
-usage: plex_remote_keyboard.py [-h] [-a ADDRESS] [-p PORT]
+$ plex-remote-keyboard -h
+usage: plex-remote-keyboard [-h] [-a ADDRESS] [-p PORT]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -19,7 +34,8 @@ optional arguments:
 
 Run without arguments to use the default IP address and port (192.168.1.104:3005). The default IP address is arbitrary and can be changed in the source code.
 ```
-$ python plex_remote_keyboard.py
+$ plex-remote-keyboard
 ```
-![Screenshot](https://cloud.githubusercontent.com/assets/2266504/7202090/414c11b8-e50f-11e4-9d05-302f68f662c4.png)
+![Screenshot 1](https://cloud.githubusercontent.com/assets/2266504/7202090/414c11b8-e50f-11e4-9d05-302f68f662c4.png)
 
+![Screenshot 2](https://cloud.githubusercontent.com/assets/2266504/7202514/545f6b66-e513-11e4-9ebb-99ad720ab2bf.png)
