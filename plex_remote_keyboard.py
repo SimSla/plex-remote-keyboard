@@ -19,7 +19,7 @@ def main():
     args = parser.parse_args()
 
     print_header()
-    IP_Address = validate_address_port(args.address)
+    IP_Address = can_reach_address(args.address)
     print_instructions()
 
     url_prefix = "http://%s:%d" % (IP_Address, args.port)
@@ -80,23 +80,24 @@ def input_loop(url_prefix):
             if suffix:
                 urllib2.urlopen(url_prefix + suffix).read()
 
-def validate_address_port(IP_ADDRESS):
+def can_reach_address(IP_ADDRESS):
 
-    print "Reaching out to remote host...   ",
+    print "Reaching out to remote host...",
+    sys.stdout.flush()
+
     if not is_online(IP_ADDRESS):
-        print "FAIL"
+        print " FAIL"
+        print ""
         print "No response at default address (%s)." % IP_ADDRESS
         print "Enter another IP address or leave blank to exit:"
         alt = raw_input("> ")
+        print ""
         if alt == "":
             print "Exiting."
             exit(0)
-        elif not is_online(alt):
-            print "Invalid or unreachable address. Exiting."
-            exit(0)
         else:
-            IP_ADDRESS = alt
-    print "OK"
+            return can_reach_address(alt)
+    print "   OK"
     print ""
 
     return IP_ADDRESS
@@ -130,7 +131,7 @@ def print_instructions():
 
 def is_online(IP_Address):
     try:
-        response = os.system("ping -c 1 %s > /dev/null 2>&1" % IP_Address)
+        response = os.system("ping -c 1 -W 2000 -t 3 %s > /dev/null 2>&1" % IP_Address)
         return response == 0
     except:
         return False
