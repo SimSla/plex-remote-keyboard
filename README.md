@@ -1,5 +1,5 @@
 # plex-remote-keyboard
-Uses the [Plex Home Theatre REST API](https://code.google.com/p/plex-api/wiki/PlaybackControl) to remotely control Plex with a keyboard.
+Uses the [Plex Home Theater REST API](https://code.google.com/p/plex-api/wiki/PlaybackControl) to remotely control Plex with a keyboard.
 
 Tested on Mac OS X and Python 2.7. *Might* work on other systems.
 
@@ -21,7 +21,7 @@ You can also run the script without installing.
 $ plex-remote-keyboard -h
 usage: plex-remote-keyboard [-h] [-a ADDRESS] [-p PORT] [-u]
 
-Uses the Plex Home Theatre REST API to remotely control Plex with a keyboard.
+Uses the Plex Home Theater REST API to remotely control Plex with a keyboard.
 
 optional arguments:
   -h, --help            show this help message and exit
