@@ -77,6 +77,7 @@ def input_loop(url_prefix):
             elif c == 'b':
                 suffix = "/player/playback/stepBack"
             elif c == 'q':
+                clear()
                 exit(0)
             else:
                 suffix = None
@@ -105,8 +106,11 @@ def can_reach_address(IP_ADDRESS):
 
     return IP_ADDRESS
 
-def print_header():
+def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
+
+def print_header():
+    clear()
 
     print "####################################"
     print "# PLEX HOME THEATRE NETWORK REMOTE #"
