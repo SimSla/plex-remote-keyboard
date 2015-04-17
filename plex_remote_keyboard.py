@@ -82,7 +82,7 @@ def input_loop(url_prefix):
 
 def validate_address_port(IP_ADDRESS):
 
-    print "Reaching out to remote Plex...",
+    print "Reaching out to remote host...   ",
     if not is_online(IP_ADDRESS):
         print "FAIL"
         print "No response at default address (%s)." % IP_ADDRESS
