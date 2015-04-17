@@ -1,5 +1,13 @@
 from distutils.core import setup
-setup(name='plex-remote-keyboard',
+import os
+import shutil
+
+SCRIPT_NAME = "plex-remote-keyboard"
+if not os.path.exists('build/bin'):
+    os.makedirs('build/bin')
+shutil.copyfile('src/%s.py' % SCRIPT_NAME, 'build/bin/%s' % SCRIPT_NAME)
+
+setup(name=SCRIPT_NAME,
       version='0.1',
-      scripts=['src/plex-remote-keyboard.py'],
+      scripts=['build/bin/%s' % SCRIPT_NAME],
       )
