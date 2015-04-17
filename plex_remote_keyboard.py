@@ -12,7 +12,6 @@ DEFAULT_IP_ADDRESS = "192.168.1.104"
 DEFAULT_PORT = 3005
 
 def main():
-
     parser = argparse.ArgumentParser(description='Uses the Plex Home Theatre REST API to remotely control Plex with a keyboard.')
     parser.add_argument('-a', '--address', type=str, default=DEFAULT_IP_ADDRESS, help="IP address of PHT host. (default: %s)" % DEFAULT_IP_ADDRESS)
     parser.add_argument('-p', '--port', type=str, default=DEFAULT_PORT, help="Port where PHT host can be reached. (default: %d)" % DEFAULT_PORT)
@@ -28,6 +27,8 @@ def main():
 
     input_loop(url_prefix)
 
+# Character reading based on code by Danny Yoo (under PSF license)
+# source: http://code.activestate.com/recipes/134892/
 def input_loop(url_prefix):
 
     while True:
