@@ -17,6 +17,19 @@ APPAUTHOR = "simonslangen"
 DEFAULT_ADDRESS = "127.0.0.1"
 DEFAULT_PORT = 3005
 
+global plex_keys
+plex_keys = {'\x1b[A' : "/player/navigation/moveUp",
+            '\x1b[B' :  "/player/navigation/moveDown",
+            '\x1b[C' :  "/player/navigation/moveRight",
+            '\x1b[D' :  "/player/navigation/moveLeft",
+            '\n' :      "/player/navigation/select",
+            'h' :       "/player/navigation/home",
+            '\x1b' :    "/player/navigation/back",  # escape key
+            ' ' :       "/player/playback/play",
+            'x' :       "/player/playback/stop",
+            'f' :       "/player/playback/stepForward",
+            'b' :       "/player/playback/stepBack"}
+
 def main():
     # Retrieve defaults.
     try:
@@ -57,6 +70,7 @@ def main():
 # Character reading based on code by Danny Yoo (under PSF license)
 # source: http://code.activestate.com/recipes/134892/
 def input_loop(url_prefix):
+    global plex_keys
 
     while True:
         fd = sys.stdin.fileno()
@@ -80,30 +94,7 @@ def input_loop(url_prefix):
         finally:
             termios.tcsetattr(fd, termios.TCSAFLUSH, oldterm)
             fcntl.fcntl(fd, fcntl.F_SETFL, oldflags)
-
-            if c == '\x1b[A':
-                suffix = "/player/navigation/moveUp"
-            elif c == '\x1b[B':
-                suffix = "/player/navigation/moveDown"
-            elif c == '\x1b[C':
-                suffix = "/player/navigation/moveRight"
-            elif c == '\x1b[D':
-                suffix = "/player/navigation/moveLeft"
-            elif c == '\n':
-                suffix = "/player/navigation/select"
-            elif c == 'h':
-                suffix = "/player/navigation/home"
-            elif c == '\x1b':
-                suffix = "/player/navigation/back"
-            elif c == ' ':
-                suffix = "/player/playback/play"
-            elif c == 'x':
-                suffix = "/player/playback/stop"
-            elif c == 'f':
-                suffix = "/player/playback/stepForward"
-            elif c == 'b':
-                suffix = "/player/playback/stepBack"
-            elif c == 'q':
+            if c == 'q':
                 clear()
                 exit(0)
             elif c == '*':
@@ -111,20 +102,17 @@ def input_loop(url_prefix):
                 change_defaults_i()
                 del sys.argv[1:]
                 main()
-            else:
-                suffix = None
-            if suffix:
-                urllib2.urlopen(url_prefix + suffix).read()
+            elif c in plex_keys:
+                urllib2.urlopen(url_prefix + plex_keys[c]).read()
 
 def can_reach_address(IP_ADDRESS):
-
     print "Reaching out to remote host %s..." % IP_ADDRESS,
     sys.stdout.flush()
 
     if not is_online(IP_ADDRESS):
         print "FAIL"
         print ""
-        print "No response at default address (%s)." % IP_ADDRESS
+        print "No response at address (%s)." % IP_ADDRESS
         print "Enter another IP address or leave blank to exit:"
         alt = raw_input("> ")
         print ""
