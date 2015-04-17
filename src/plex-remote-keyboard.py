@@ -41,7 +41,7 @@ def main():
             default_address, default_port = init_defaults_i()
 
     # Parse arguments.
-    parser = argparse.ArgumentParser(description='Uses the Plex Home Theatre REST API to remotely control Plex with a keyboard.')
+    parser = argparse.ArgumentParser(description='Uses the Plex Home Theater REST API to remotely control Plex with a keyboard.')
     parser.add_argument('-a', '--address', type=str, default=default_address, help="IP address of PHT host. (default: %s)" % default_address)
     parser.add_argument('-p', '--port', type=str, default=default_port, help="Port where PHT host can be reached. (default: %d)" % default_port)
     parser.add_argument('-u', '--update_defaults', action='store_true', help='Causes the current defaults to be overwritten with the supplied address and/or port.')
@@ -159,7 +159,7 @@ def init_defaults(address, port):
 
 def init_defaults_i():
     print "The default network location of your"
-    print "Plex Home Theatre host has not been set."
+    print "Plex Home Theater host has not been set."
     if query_continue("Do you want to do this now?"):
         return init_defaults(query_address("Enter the address of your PHT host:"),
                             query_integer("Enter the port number:"))
@@ -173,7 +173,7 @@ def print_header():
     clear()
 
     print "####################################"
-    print "# PLEX HOME THEATRE NETWORK REMOTE #"
+    print "# PLEX HOME THEATER NETWORK REMOTE #"
     print "####################################"
     print ""
 
