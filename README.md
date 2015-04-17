@@ -1,11 +1,9 @@
 # plex-remote-keyboard
-Uses the [Plex Home Theatre REST API](https://code.google.com/p/plex-api/wiki/PlaybackControl) to remotely control Plex with a keyboard.
+Uses the [Plex Home Theater REST API](https://code.google.com/p/plex-api/wiki/PlaybackControl) to remotely control Plex with a keyboard.
 
 Tested on Mac OS X and Python 2.7. *Might* work on other systems.
 
 ## Installation
-Change the IP address in `src/plex-remote-keyboard.py` to match that of your PHT host.
-
 Run the setup script to install the script and add it to your path.
 
     $ python setup.py install
@@ -21,18 +19,23 @@ You can also run the script without installing.
 
 ```
 $ plex-remote-keyboard -h
-usage: plex-remote-keyboard [-h] [-a ADDRESS] [-p PORT]
+usage: plex-remote-keyboard [-h] [-a ADDRESS] [-p PORT] [-u]
+
+Uses the Plex Home Theater REST API to remotely control Plex with a keyboard.
 
 optional arguments:
   -h, --help            show this help message and exit
   -a ADDRESS, --address ADDRESS
-                        IP address of PHT host. (default: 192.168.1.104)
+                        IP address of PHT host.
   -p PORT, --port PORT  Port where PHT host can be reached. (default: 3005)
+  -u, --update_defaults
+                        Causes the current defaults to be overwritten with the
+                        supplied address and/or port.
 ```
 
 ### Example
 
-Run without arguments to use the default IP address and port (192.168.1.104:3005). The default IP address is arbitrary and can be changed in the source code.
+Run without arguments to use the default IP address and port. The default IP address and port can be configured on the first run and can be changed at any time.
 ```
 $ plex-remote-keyboard
 ```
